@@ -1,0 +1,128 @@
+name: shadowtrust
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${SHADOWTRUST_POSTGRES_DB:-shadowtrust}
+      POSTGRES_USER: ${SHADOWTRUST_POSTGRES_USER:-shadowtrust}
+      POSTGRES_PASSWORD: ${SHADOWTRUST_POSTGRES_PASSWORD:?set SHADOWTRUST_POSTGRES_PASSWORD in .env}
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - shadowtrust_postgres_data:/var/lib/postgresql/data
+
+  migrate:
+    build:
+      context: ./backend
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      SHADOWTRUST_DATABASE_URL: postgresql+psycopg://${SHADOWTRUST_POSTGRES_USER:-shadowtrust}:${SHADOWTRUST_POSTGRES_PASSWORD:?set SHADOWTRUST_POSTGRES_PASSWORD in .env}@postgres:5432/${SHADOWTRUST_POSTGRES_DB:-shadowtrust}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: ./backend
+    environment:
+      SHADOWTRUST_ENVIRONMENT: production
+      SHADOWTRUST_DATABASE_URL: postgresql+psycopg://${SHADOWTRUST_POSTGRES_USER:-shadowtrust}:${SHADOWTRUST_POSTGRES_PASSWORD:?set SHADOWTRUST_POSTGRES_PASSWORD in .env}@postgres:5432/${SHADOWTRUST_POSTGRES_DB:-shadowtrust}
+      SHADOWTRUST_API_HOST: 0.0.0.0
+      SHADOWTRUST_API_PORT: 8000
+      SHADOWTRUST_INGESTION_API_KEYS: ${SHADOWTRUST_INGESTION_API_KEYS:?set SHADOWTRUST_INGESTION_API_KEYS in .env}
+      SHADOWTRUST_ANALYST_API_KEYS: ${SHADOWTRUST_ANALYST_API_KEYS:?set SHADOWTRUST_ANALYST_API_KEYS in .env}
+      SHADOWTRUST_METRICS_API_KEYS: ${SHADOWTRUST_METRICS_API_KEYS:?set SHADOWTRUST_METRICS_API_KEYS in .env}
+      SHADOWTRUST_RATE_LIMIT_REQUESTS: ${SHADOWTRUST_RATE_LIMIT_REQUESTS:-120}
+      SHADOWTRUST_RATE_LIMIT_WINDOW_SECONDS: ${SHADOWTRUST_RATE_LIMIT_WINDOW_SECONDS:-60}
+      SHADOWTRUST_LOG_LEVEL: ${SHADOWTRUST_LOG_LEVEL:-info}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    expose:
+      - "8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.13.5
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+    depends_on:
+      api:
+        condition: service_healthy
+    expose:
+      - "9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus/rules:/etc/prometheus/rules:ro
+      - shadowtrust_prometheus_data:/prometheus
+    secrets:
+      - shadowtrust_prometheus_api_key
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:13.2.1
+    environment:
+      GF_SECURITY_ADMIN_USER: ${SHADOWTRUST_GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/shadowtrust_grafana_admin_password
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    depends_on:
+      prometheus:
+        condition: service_started
+    ports:
+      - "127.0.0.1:${SHADOWTRUST_GRAFANA_PORT:-3000}:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/etc/grafana/dashboards:ro
+      - shadowtrust_grafana_data:/var/lib/grafana
+    secrets:
+      - shadowtrust_grafana_admin_password
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${SHADOWTRUST_WEB_PORT:-8080}:8080"
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - -qO-
+        - http://127.0.0.1:8080/health/live
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  shadowtrust_postgres_data:
+  shadowtrust_prometheus_data:
+  shadowtrust_grafana_data:
+
+secrets:
+  shadowtrust_prometheus_api_key:
+    environment: SHADOWTRUST_PROMETHEUS_API_KEY
+  shadowtrust_grafana_admin_password:
+    environment: SHADOWTRUST_GRAFANA_ADMIN_PASSWORD

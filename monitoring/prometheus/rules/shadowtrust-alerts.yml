@@ -1,0 +1,43 @@
+groups:
+  - name: shadowtrust-security
+    rules:
+      - alert: ShadowTrustMetricsTargetDown
+        expr: up{job="shadowtrust-api"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: ShadowTrust metrics target is unavailable
+          description: Prometheus has been unable to scrape the ShadowTrust API for two minutes.
+
+      - alert: ShadowTrustCriticalDecisionBurst
+        expr: increase(shadowtrust_decisions_total{risk_level="critical"}[5m]) >= 5
+        labels:
+          severity: critical
+        annotations:
+          summary: Critical account-takeover decisions are rising rapidly
+          description: At least five critical risk decisions were created in the last five minutes.
+
+      - alert: ShadowTrustConfirmedTakeoverBurst
+        expr: increase(shadowtrust_case_transitions_total{new_status="confirmed_takeover"}[10m]) >= 3
+        labels:
+          severity: critical
+        annotations:
+          summary: Analysts confirmed multiple account takeovers
+          description: At least three cases were confirmed as account takeover in the last ten minutes.
+
+      - alert: ShadowTrustEventReplaySpike
+        expr: increase(shadowtrust_events_processed_total{outcome="replayed"}[10m]) >= 20
+        labels:
+          severity: warning
+        annotations:
+          summary: Event replay volume is unusually high
+          description: At least twenty idempotent event replays occurred in the last ten minutes.
+
+      - alert: ShadowTrustDecisionReplayMismatch
+        expr: increase(shadowtrust_decision_replays_total{status=~"drifted|incompatible"}[15m]) >= 1
+        labels:
+          severity: warning
+        annotations:
+          summary: A historical decision could not be reproduced exactly
+          description: At least one decision replay drifted or used an incompatible active engine in the last fifteen minutes.

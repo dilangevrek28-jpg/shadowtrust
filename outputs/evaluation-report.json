@@ -1,0 +1,1544 @@
+{
+  "metadata": {
+    "corpus_version": "v1",
+    "split": "evaluation",
+    "scenario_count": 4,
+    "engine_version": "0.1.0",
+    "rule_set_version": "2026.5"
+  },
+  "quality_gate": {
+    "passed": true,
+    "criteria": {
+      "minimum_recall": 1.0,
+      "maximum_false_positive_rate": 0.0
+    },
+    "failures": []
+  },
+  "report": {
+    "alert_threshold": 70,
+    "outcomes": [
+      {
+        "scenario_id": "66bed3cb-cd4e-56f5-9d15-cdc1633a14eb",
+        "scenario_name": "normal_high_value_transfer",
+        "split": "evaluation",
+        "ground_truth": "normal",
+        "predicted": "normal",
+        "decisions": [
+          {
+            "id": "1e35d57b-e87b-5529-a563-41010d114e40",
+            "session_id": "e4ceb51e-b926-5a74-8347-6d9a1ad9bd1f",
+            "trigger_event_id": "076ed52f-1612-5170-bba3-57fc70b878a5",
+            "risk_before": 0,
+            "risk_after": 0,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device is present in the user baseline.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country is present in the user baseline.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "allow"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "low"
+          },
+          {
+            "id": "7cdd7994-011c-538a-91ea-8cc3675f056e",
+            "session_id": "e4ceb51e-b926-5a74-8347-6d9a1ad9bd1f",
+            "trigger_event_id": "94d500ea-3a15-56ae-83eb-6dfa30477b9d",
+            "risk_before": 0,
+            "risk_after": 0,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No recent recovery-flow device registration precedes the transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No password-change and matching-beneficiary sequence precedes the transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No recent login has both a different device and country.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "allow"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "low"
+          }
+        ],
+        "first_alert_event_id": null,
+        "detection_latency_seconds": null,
+        "unnecessary_step_up_count": 0
+      },
+      {
+        "scenario_id": "7e418082-681f-52a6-bd9a-bc3361dfe54a",
+        "scenario_name": "normal_password_change",
+        "split": "evaluation",
+        "ground_truth": "normal",
+        "predicted": "normal",
+        "decisions": [
+          {
+            "id": "36daea37-44d8-5b47-9632-bbe856b0aae9",
+            "session_id": "7fa86032-f421-51eb-86aa-8996e7c270b9",
+            "trigger_event_id": "8ef5a9b9-344f-5a26-949c-fb33561ea296",
+            "risk_before": 0,
+            "risk_after": 0,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device is present in the user baseline.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country is present in the user baseline.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "allow"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "low"
+          },
+          {
+            "id": "d975cbb1-1b72-51fe-b2a2-e439857f67c0",
+            "session_id": "7fa86032-f421-51eb-86aa-8996e7c270b9",
+            "trigger_event_id": "19648e63-0372-59cf-a193-f84ba7e820e6",
+            "risk_before": 0,
+            "risk_after": 0,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "allow"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "low"
+          }
+        ],
+        "first_alert_event_id": null,
+        "detection_latency_seconds": null,
+        "unnecessary_step_up_count": 0
+      },
+      {
+        "scenario_id": "47f47172-2600-5f20-a370-310e192f77de",
+        "scenario_name": "ato_mfa_fatigue_holdout",
+        "split": "evaluation",
+        "ground_truth": "ato",
+        "predicted": "ato",
+        "decisions": [
+          {
+            "id": "7f2fe3ca-657c-5bf7-919e-1449e796dc03",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "0921d98d-84bb-5577-8ce6-1b5c9ab00cf4",
+            "risk_before": 0,
+            "risk_after": 35,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": true,
+                "score_delta": 15,
+                "reason": "The device is not present in the user baseline.",
+                "evidence_event_ids": [
+                  "0921d98d-84bb-5577-8ce6-1b5c9ab00cf4"
+                ]
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": true,
+                "score_delta": 20,
+                "reason": "The event country is not present in the user baseline.",
+                "evidence_event_ids": [
+                  "0921d98d-84bb-5577-8ce6-1b5c9ab00cf4"
+                ]
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "monitor"
+            ],
+            "explanation": "NEW_DEVICE: The device is not present in the user baseline. UNUSUAL_COUNTRY: The event country is not present in the user baseline.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 35,
+            "risk_level": "guarded"
+          },
+          {
+            "id": "8d45e56e-4df8-511b-ae4e-54c14a750e81",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "42fbc5ba-b427-510a-89d9-1a635fc607cc",
+            "risk_before": 35,
+            "risk_after": 35,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "monitor"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "guarded"
+          },
+          {
+            "id": "79339d2e-ad10-5c15-a932-23960b645737",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "4fdb4423-5828-5947-a118-e19869185f43",
+            "risk_before": 35,
+            "risk_after": 35,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "monitor"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "guarded"
+          },
+          {
+            "id": "a8e5676e-548f-5220-bb32-9442ddace77a",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "d4018408-b369-58b9-bc0b-b7d97b01bf00",
+            "risk_before": 35,
+            "risk_after": 35,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "monitor"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "guarded"
+          },
+          {
+            "id": "9aa22dee-5edf-508d-94fa-d097b77b9434",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "0553a5a3-aaf6-54c7-95a9-ac030b3fe023",
+            "risk_before": 35,
+            "risk_after": 35,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "monitor"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "guarded"
+          },
+          {
+            "id": "49801a6c-8b7d-5207-810d-b8eff10198ee",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "b59d00af-c873-5a1f-a4a4-0cb8303459a8",
+            "risk_before": 35,
+            "risk_after": 70,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": true,
+                "score_delta": 35,
+                "reason": "An MFA approval followed at least 3 MFA failures within 10 minutes.",
+                "evidence_event_ids": [
+                  "4fdb4423-5828-5947-a118-e19869185f43",
+                  "d4018408-b369-58b9-bc0b-b7d97b01bf00",
+                  "0553a5a3-aaf6-54c7-95a9-ac030b3fe023",
+                  "b59d00af-c873-5a1f-a4a4-0cb8303459a8"
+                ]
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "step_up_auth",
+              "hold_transaction"
+            ],
+            "explanation": "REPEATED_MFA_FAILURES_THEN_APPROVAL: An MFA approval followed at least 3 MFA failures within 10 minutes.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 35,
+            "risk_level": "high"
+          },
+          {
+            "id": "08b3a807-d443-5e17-bc5f-7cdc89608bbd",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "c3fbf5c0-5c3b-523c-91ca-1b02eaa6bf9f",
+            "risk_before": 70,
+            "risk_after": 70,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "step_up_auth",
+              "hold_transaction"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "high"
+          },
+          {
+            "id": "221c9bc5-a517-5816-8e2d-4928268f1d96",
+            "session_id": "a90cfe77-824c-53ad-9b72-b7cafb74cff4",
+            "trigger_event_id": "08f66baa-a94d-5cc5-80a8-9f022bf885c2",
+            "risk_before": 70,
+            "risk_after": 70,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No recent recovery-flow device registration precedes the transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No password-change and matching-beneficiary sequence precedes the transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No recent login has both a different device and country.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "step_up_auth",
+              "hold_transaction"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "high"
+          }
+        ],
+        "first_alert_event_id": "b59d00af-c873-5a1f-a4a4-0cb8303459a8",
+        "detection_latency_seconds": 300.0,
+        "unnecessary_step_up_count": 0
+      },
+      {
+        "scenario_id": "060fdc7a-ce00-5ddf-830f-e606f3b3194a",
+        "scenario_name": "ato_recovery_device_transfer",
+        "split": "evaluation",
+        "ground_truth": "ato",
+        "predicted": "ato",
+        "decisions": [
+          {
+            "id": "977f41d5-2122-51be-bc70-7a71ea96426b",
+            "session_id": "1d886d81-13b7-5452-89e9-1db0902663a9",
+            "trigger_event_id": "b12a9fc8-286b-5058-a082-235b51f9b598",
+            "risk_before": 0,
+            "risk_after": 60,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": true,
+                "score_delta": 15,
+                "reason": "The device is not present in the user baseline.",
+                "evidence_event_ids": [
+                  "b12a9fc8-286b-5058-a082-235b51f9b598"
+                ]
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": true,
+                "score_delta": 20,
+                "reason": "The event country is not present in the user baseline.",
+                "evidence_event_ids": [
+                  "b12a9fc8-286b-5058-a082-235b51f9b598"
+                ]
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": true,
+                "score_delta": 25,
+                "reason": "A device was registered through the account recovery flow.",
+                "evidence_event_ids": [
+                  "b12a9fc8-286b-5058-a082-235b51f9b598"
+                ]
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "step_up_auth"
+            ],
+            "explanation": "NEW_DEVICE: The device is not present in the user baseline. UNUSUAL_COUNTRY: The event country is not present in the user baseline. ACCOUNT_RECOVERY_DEVICE_REGISTRATION: A device was registered through the account recovery flow.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 60,
+            "risk_level": "elevated"
+          },
+          {
+            "id": "f007e04d-0d73-5c89-baa4-689ee98c2d94",
+            "session_id": "1d886d81-13b7-5452-89e9-1db0902663a9",
+            "trigger_event_id": "ed560f93-189b-5c63-905e-70c82ed7ef80",
+            "risk_before": 60,
+            "risk_after": 60,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "Fewer than 3 recent invalid-credential failures precede login success.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "step_up_auth"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "elevated"
+          },
+          {
+            "id": "a7be511f-8393-50aa-8256-ba78132791a9",
+            "session_id": "1d886d81-13b7-5452-89e9-1db0902663a9",
+            "trigger_event_id": "20046cda-a494-5ce8-9db8-c06e36e69117",
+            "risk_before": 60,
+            "risk_after": 60,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger event is not a transfer.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "step_up_auth"
+            ],
+            "explanation": "No detection rules matched the trigger event.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 0,
+            "risk_level": "elevated"
+          },
+          {
+            "id": "e7747be2-6a7b-555b-a3c9-50d1e89d4a48",
+            "session_id": "1d886d81-13b7-5452-89e9-1db0902663a9",
+            "trigger_event_id": "69264884-425e-5d68-a027-96c0b96fe92d",
+            "risk_before": 60,
+            "risk_after": 100,
+            "evaluations": [
+              {
+                "rule_code": "NEW_DEVICE",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The device was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "UNUSUAL_COUNTRY",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The country was already scored earlier in the session.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "ACCOUNT_RECOVERY_DEVICE_REGISTRATION",
+                "rule_version": "2026.1",
+                "category": "signal",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a recovery-flow device registration.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "RECOVERY_DEVICE_THEN_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": true,
+                "score_delta": 40,
+                "reason": "A transfer was initiated within 30 minutes of registering a device through account recovery.",
+                "evidence_event_ids": [
+                  "b12a9fc8-286b-5058-a082-235b51f9b598",
+                  "69264884-425e-5d68-a027-96c0b96fe92d"
+                ]
+              },
+              {
+                "rule_code": "PASSWORD_CHANGE_BENEFICIARY_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No password-change and matching-beneficiary sequence precedes the transfer.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_MFA_FAILURES_THEN_APPROVAL",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not an approved MFA challenge.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "REPEATED_INVALID_CREDENTIALS_THEN_SUCCESS",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "The trigger is not a successful password-only login.",
+                "evidence_event_ids": []
+              },
+              {
+                "rule_code": "SESSION_CONTEXT_SWITCH_BEFORE_TRANSFER",
+                "rule_version": "2026.1",
+                "category": "contradiction",
+                "matched": false,
+                "score_delta": 0,
+                "reason": "No recent login has both a different device and country.",
+                "evidence_event_ids": []
+              }
+            ],
+            "recommended_actions": [
+              "restrict_session",
+              "analyst_review"
+            ],
+            "explanation": "RECOVERY_DEVICE_THEN_TRANSFER: A transfer was initiated within 30 minutes of registering a device through account recovery.",
+            "rule_set_version": "2026.5",
+            "engine_version": "0.1.0",
+            "baseline_version": "baseline-1",
+            "risk_delta": 40,
+            "risk_level": "critical"
+          }
+        ],
+        "first_alert_event_id": "69264884-425e-5d68-a027-96c0b96fe92d",
+        "detection_latency_seconds": 1200.0,
+        "unnecessary_step_up_count": 0
+      }
+    ],
+    "metrics": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 2,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "average_detection_latency_seconds": 750.0,
+      "unnecessary_step_up_count": 0,
+      "total_decisions": 16
+    }
+  }
+}

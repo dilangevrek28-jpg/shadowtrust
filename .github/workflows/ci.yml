@@ -1,0 +1,97 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend / Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.14"]
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
+        with:
+          version: latest-known
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - name: Install locked dependencies
+        run: uv sync --frozen --all-groups
+      - name: Run backend tests
+        run: uv run pytest -q
+      - name: Enforce holdout detection quality
+        run: >-
+          uv run shadowtrust-evaluate
+          --split evaluation
+          --minimum-recall 1.0
+          --maximum-false-positive-rate 0.0
+          --output ../outputs/evaluation-report.json
+
+  frontend:
+    name: Frontend / test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.25.0
+          run_install: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run frontend tests
+        run: pnpm test
+      - name: Build production bundle
+        run: pnpm build
+
+  containers:
+    name: Container contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [backend, frontend]
+    env:
+      SHADOWTRUST_POSTGRES_PASSWORD: ci-postgres-password
+      SHADOWTRUST_INGESTION_API_KEYS: ci-ingestion-key-1234567890
+      SHADOWTRUST_ANALYST_API_KEYS: ci-analyst-key-1234567890
+      SHADOWTRUST_METRICS_API_KEYS: ci-metrics-key-1234567890
+      SHADOWTRUST_PROMETHEUS_API_KEY: ci-metrics-key-1234567890
+      SHADOWTRUST_GRAFANA_ADMIN_PASSWORD: ci-grafana-password-123456
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+      - name: Validate Compose model
+        run: docker compose config --quiet
+      - name: Build application images
+        run: docker compose build api web

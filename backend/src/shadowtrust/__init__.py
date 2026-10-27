@@ -1,0 +1,1 @@
+"""ShadowTrust application package."""
